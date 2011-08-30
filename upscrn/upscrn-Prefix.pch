@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'upscrn' target in the 'upscrn' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

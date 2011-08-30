@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C97D11D8140D04BE0043652E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97D11D7140D04BE0043652E /* Cocoa.framework */; };
+		C97D11DA140D04BE0043652E /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97D11D9140D04BE0043652E /* MacRuby.framework */; };
+		C97D11E1140D04BE0043652E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97D11DF140D04BE0043652E /* InfoPlist.strings */; };
+		C97D11E3140D04BE0043652E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C97D11E2140D04BE0043652E /* main.m */; };
+		C97D11E8140D04BF0043652E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97D11E6140D04BF0043652E /* MainMenu.xib */; };
+		C97D11EB140D04BF0043652E /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11EA140D04BF0043652E /* rb_main.rb */; };
+		C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11EC140D04BF0043652E /* AppDelegate.rb */; };
+		C97D11F0140D04BF0043652E /* upscrn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C97D11EE140D04BF0043652E /* upscrn.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C97D11D3140D04BE0043652E /* upscrn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upscrn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C97D11D7140D04BE0043652E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C97D11D9140D04BE0043652E /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = DEVELOPER_DIR; };
+		C97D11DE140D04BE0043652E /* upscrn-Info.plist */ = {isa = PBXFileReference; path = "upscrn-Info.plist"; sourceTree = "<group>"; };
+		C97D11E0140D04BE0043652E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C97D11E2140D04BE0043652E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C97D11E4140D04BE0043652E /* upscrn-Prefix.pch */ = {isa = PBXFileReference; path = "upscrn-Prefix.pch"; sourceTree = "<group>"; };
+		C97D11E7140D04BF0043652E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C97D11EA140D04BF0043652E /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
+		C97D11EC140D04BF0043652E /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
+		C97D11EF140D04BF0043652E /* upscrn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = upscrn.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C97D11D0140D04BE0043652E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97D11D8140D04BE0043652E /* Cocoa.framework in Frameworks */,
+				C97D11DA140D04BE0043652E /* MacRuby.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C97D11C8140D04BD0043652E = {
+			isa = PBXGroup;
+			children = (
+				C97D11DC140D04BE0043652E /* upscrn */,
+				C97D11D6140D04BE0043652E /* Frameworks */,
+				C97D11D4140D04BE0043652E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C97D11D4140D04BE0043652E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11D3140D04BE0043652E /* upscrn.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C97D11D6140D04BE0043652E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11D7140D04BE0043652E /* Cocoa.framework */,
+				C97D11D9140D04BE0043652E /* MacRuby.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C97D11DC140D04BE0043652E /* upscrn */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11EC140D04BF0043652E /* AppDelegate.rb */,
+				C97D11EE140D04BF0043652E /* upscrn.xcdatamodeld */,
+				C97D11E5140D04BF0043652E /* Resources */,
+				C97D11E9140D04BF0043652E /* Other Sources */,
+				C97D11DD140D04BE0043652E /* Supporting Files */,
+			);
+			path = upscrn;
+			sourceTree = "<group>";
+		};
+		C97D11DD140D04BE0043652E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11DE140D04BE0043652E /* upscrn-Info.plist */,
+				C97D11DF140D04BE0043652E /* InfoPlist.strings */,
+				C97D11E2140D04BE0043652E /* main.m */,
+				C97D11E4140D04BE0043652E /* upscrn-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C97D11E5140D04BF0043652E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11E6140D04BF0043652E /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C97D11E9140D04BF0043652E /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C97D11EA140D04BF0043652E /* rb_main.rb */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		C97D11DB140D04BE0043652E /* Deployment */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "--compile --embed";
+			buildConfigurationList = C97D11F6140D04BF0043652E /* Build configuration list for PBXLegacyTarget "Deployment" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/local/bin/macruby_deploy;
+			dependencies = (
+			);
+			name = Deployment;
+			passBuildSettingsInEnvironment = 1;
+			productName = Deployment;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		C97D11D2140D04BE0043652E /* upscrn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C97D11F3140D04BF0043652E /* Build configuration list for PBXNativeTarget "upscrn" */;
+			buildPhases = (
+				C97D11CF140D04BE0043652E /* Sources */,
+				C97D11D0140D04BE0043652E /* Frameworks */,
+				C97D11D1140D04BE0043652E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = upscrn;
+			productName = upscrn;
+			productReference = C97D11D3140D04BE0043652E /* upscrn.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C97D11CA140D04BD0043652E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C97D11CD140D04BD0043652E /* Build configuration list for PBXProject "upscrn" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C97D11C8140D04BD0043652E;
+			productRefGroup = C97D11D4140D04BE0043652E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C97D11D2140D04BE0043652E /* upscrn */,
+				C97D11DB140D04BE0043652E /* Deployment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C97D11D1140D04BE0043652E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97D11E1140D04BE0043652E /* InfoPlist.strings in Resources */,
+				C97D11E8140D04BF0043652E /* MainMenu.xib in Resources */,
+				C97D11EB140D04BF0043652E /* rb_main.rb in Resources */,
+				C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C97D11CF140D04BE0043652E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C97D11E3140D04BE0043652E /* main.m in Sources */,
+				C97D11F0140D04BF0043652E /* upscrn.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C97D11DF140D04BE0043652E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C97D11E0140D04BE0043652E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C97D11E6140D04BF0043652E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C97D11E7140D04BF0043652E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C97D11F1140D04BF0043652E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C97D11F2140D04BF0043652E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C97D11F4140D04BF0043652E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "upscrn/upscrn-Prefix.pch";
+				INFOPLIST_FILE = "upscrn/upscrn-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C97D11F5140D04BF0043652E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "upscrn/upscrn-Prefix.pch";
+				INFOPLIST_FILE = "upscrn/upscrn-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C97D11F7140D04BF0043652E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C97D11F8140D04BF0043652E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C97D11CD140D04BD0043652E /* Build configuration list for PBXProject "upscrn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C97D11F1140D04BF0043652E /* Debug */,
+				C97D11F2140D04BF0043652E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C97D11F3140D04BF0043652E /* Build configuration list for PBXNativeTarget "upscrn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C97D11F4140D04BF0043652E /* Debug */,
+				C97D11F5140D04BF0043652E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C97D11F6140D04BF0043652E /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C97D11F7140D04BF0043652E /* Debug */,
+				C97D11F8140D04BF0043652E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C97D11EE140D04BF0043652E /* upscrn.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C97D11EF140D04BF0043652E /* upscrn.xcdatamodel */,
+			);
+			currentVersion = C97D11EF140D04BF0043652E /* upscrn.xcdatamodel */;
+			path = upscrn.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C97D11CA140D04BD0043652E /* Project object */;
+}
