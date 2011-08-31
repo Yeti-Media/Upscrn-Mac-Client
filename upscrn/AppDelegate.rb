@@ -5,6 +5,12 @@
 #  Created by Matthew Cowley on 8/30/11.
 #  Copyright 2011 __MyCompanyName__. All rights reserved.
 #
+require 'rubygems'
+require 'rest-client'
+
+$token_key = "upscrn_token"
+$defaults = NSUserDefaults.standardUserDefaults
+
 
 class AppDelegate
     attr_accessor :window
@@ -12,6 +18,15 @@ class AppDelegate
         # Insert code here to initialize your application
     end
 
+    def initialize
+        puts "defaults: #{$defaults}  token: #{$defaults[$token_key]}"
+        if $defaults[$token_key].nil?
+            puts "setting default token"
+            $defaults[$token_key] = "12345"
+        end
+    end
+
+    
     # Persistence accessors
     attr_reader :persistentStoreCoordinator
     attr_reader :managedObjectModel

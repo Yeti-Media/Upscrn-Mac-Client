@@ -15,20 +15,28 @@
 		C97D11EB140D04BF0043652E /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11EA140D04BF0043652E /* rb_main.rb */; };
 		C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11EC140D04BF0043652E /* AppDelegate.rb */; };
 		C97D11F0140D04BF0043652E /* upscrn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C97D11EE140D04BF0043652E /* upscrn.xcdatamodeld */; };
+		C97D11FA140D05560043652E /* home_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11F9140D05560043652E /* home_controller.rb */; };
+		C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FB140D057A0043652E /* upscrn_client.rb */; };
+		C97D11FE140D058F0043652E /* auth_token.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FD140D058F0043652E /* auth_token.rb */; };
+		C97D1200140D08CA0043652E /* json in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FF140D08CA0043652E /* json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C97D11D3140D04BE0043652E /* upscrn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upscrn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97D11D7140D04BE0043652E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C97D11D9140D04BE0043652E /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = DEVELOPER_DIR; };
-		C97D11DE140D04BE0043652E /* upscrn-Info.plist */ = {isa = PBXFileReference; path = "upscrn-Info.plist"; sourceTree = "<group>"; };
+		C97D11DE140D04BE0043652E /* upscrn-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "upscrn-Info.plist"; sourceTree = "<group>"; };
 		C97D11E0140D04BE0043652E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C97D11E2140D04BE0043652E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C97D11E4140D04BE0043652E /* upscrn-Prefix.pch */ = {isa = PBXFileReference; path = "upscrn-Prefix.pch"; sourceTree = "<group>"; };
+		C97D11E4140D04BE0043652E /* upscrn-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "upscrn-Prefix.pch"; sourceTree = "<group>"; };
 		C97D11E7140D04BF0043652E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C97D11EA140D04BF0043652E /* rb_main.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
 		C97D11EC140D04BF0043652E /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
 		C97D11EF140D04BF0043652E /* upscrn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = upscrn.xcdatamodel; sourceTree = "<group>"; };
+		C97D11F9140D05560043652E /* home_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = home_controller.rb; sourceTree = "<group>"; };
+		C97D11FB140D057A0043652E /* upscrn_client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = upscrn_client.rb; sourceTree = "<group>"; };
+		C97D11FD140D058F0043652E /* auth_token.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = auth_token.rb; sourceTree = "<group>"; };
+		C97D11FF140D08CA0043652E /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +112,11 @@
 		C97D11E9140D04BF0043652E /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C97D11FF140D08CA0043652E /* json */,
 				C97D11EA140D04BF0043652E /* rb_main.rb */,
+				C97D11F9140D05560043652E /* home_controller.rb */,
+				C97D11FB140D057A0043652E /* upscrn_client.rb */,
+				C97D11FD140D058F0043652E /* auth_token.rb */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -114,11 +126,12 @@
 /* Begin PBXLegacyTarget section */
 		C97D11DB140D04BE0043652E /* Deployment */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--compile --embed";
+			buildArgumentsString = "--compile --embed --gem rest-client";
 			buildConfigurationList = C97D11F6140D04BF0043652E /* Build configuration list for PBXLegacyTarget "Deployment" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/macruby_deploy;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = Deployment;
@@ -180,6 +193,10 @@
 				C97D11E8140D04BF0043652E /* MainMenu.xib in Resources */,
 				C97D11EB140D04BF0043652E /* rb_main.rb in Resources */,
 				C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */,
+				C97D11FA140D05560043652E /* home_controller.rb in Resources */,
+				C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */,
+				C97D11FE140D058F0043652E /* auth_token.rb in Resources */,
+				C97D1200140D08CA0043652E /* json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
