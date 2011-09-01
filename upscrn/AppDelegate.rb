@@ -14,17 +14,16 @@ $defaults = NSUserDefaults.standardUserDefaults
 
 class AppDelegate
     attr_accessor :window
+    attr_accessor :preferences_window
+    
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application
-    end
-
-    def initialize
-        puts "defaults: #{$defaults}  token: #{$defaults[$token_key]}"
-        if $defaults[$token_key].nil?
-            puts "setting default token"
-            $defaults[$token_key] = "12345"
+        $defaults[$token_key] = nil
+        if $defaults[$token_key].nil? || $defaults[$tokey_key].trim == ""
+            preferences_window.makeKeyAndOrderFront(NSApp)
         end
     end
+
 
     
     # Persistence accessors
