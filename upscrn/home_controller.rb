@@ -32,6 +32,11 @@ class HomeController < NSWindowController
     @kCGWindowListOptionOnScreenOnly = (1<<4)
     @kCGNullWindowID = 0 #(CGWindowID)0
     
+    #dummy action for testing quick things, from a button on the screen
+    def testme(sender)
+        nsurl = NSURL.URLWithString("http://cnn.com")   
+        show_screenshot_url("http://cnn.com", nsurl)
+    end
     
     def grabScreenshot(sender)
         puts "defaults token: #{$defaults.stringForKey($token_key)}"
@@ -107,8 +112,8 @@ class HomeController < NSWindowController
             
             #clickable_link = NSAttributedString.hyperlinkFromString("See on upscrn", withURL:nsurl)
             puts "url = #{@url}"
-            @url_label.stringValue = nsurl
-            
+            #@url_label.stringValue = nsurl
+            show_screenshot_url(@url, nsurl)
             
             else
             
@@ -116,9 +121,41 @@ class HomeController < NSWindowController
         end
     end
     
+    def show_screenshot_url(link_text, nsurl)
+        # both are needed, otherwise hyperlink won't accept mousedown
+        @url_label.setAllowsEditingTextAttributes(true)
+        @url_label.setSelectable(true)
+        
+        url_string = NSMutableAttributedString.alloc.init
+        url_string.appendAttributedString(hyperlink_from_string(link_text, nsurl))
+        
+        # set the attributed string to the NSTextField
+        @url_label.setAttributedStringValue(url_string)
+    end
+    
     def add_text_to_clipboard(text)
         pasteboard = NSPasteboard.generalPasteboard
         changeCount = pasteboard.clearContents
         ok = pasteboard.writeObjects([text])
     end
+    
+    #from http://developer.apple.com/library/mac/#qa/qa1487/_index.html
+    def hyperlink_from_string(text, url)
+        attrString = NSMutableAttributedString.alloc.initWithString(text)
+        
+        range = NSMakeRange(0, attrString.length)
+        
+        attrString.beginEditing
+        attrString.addAttribute(NSLinkAttributeName, value:url.absoluteString, range:range)
+        
+        # make the text appear in blue
+        attrString.addAttribute(NSForegroundColorAttributeName, value:NSColor.blueColor, range:range)
+        
+        # next make the text appear with an underline
+        attrString.addAttribute(NSUnderlineStyleAttributeName, value:NSNumber.numberWithInt(NSSingleUnderlineStyle), range:range)
+        
+        attrString.endEditing
+        attrString
+    end
+
 end
