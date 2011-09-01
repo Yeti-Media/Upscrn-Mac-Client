@@ -15,13 +15,15 @@ require 'rest-client'
 class UpscrnClient
     class << self
     
-    def perform(verb,action,params={})
-        action = [action, 'json'].join('.')
-        url = ['http://upscrn.com', action].join('/')
-        puts "url: #{url}"
-        #      url = ['http://127.0.0.1:3000', action].join('/')
-        JSON.parse(RestClient.send(verb,url,params).body)
+    
+        def perform(verb,action,auth_token, params={})
+            action = [action, 'json'].join('.')
+            url = ['http://upscrn.com', action].join('/')
+            #url = ['http://127.0.0.1:3000', action].join('/')
+            url = url + "?auth_token=#{auth_token}"
+            p url
+            JSON.parse(RestClient.send(verb,url,params).body)
+        end
     end
-end
 end
 

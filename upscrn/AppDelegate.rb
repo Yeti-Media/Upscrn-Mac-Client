@@ -18,8 +18,7 @@ class AppDelegate
     
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application
-        $defaults[$token_key] = nil
-        if $defaults[$token_key].nil? || $defaults[$tokey_key].trim == ""
+        if ($defaults[$token_key].nil?  || $defaults[$token_key].length == 0)
             preferences_window.makeKeyAndOrderFront(NSApp)
         end
     end

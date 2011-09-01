@@ -89,10 +89,22 @@ class HomeController < NSWindowController
             
             file = File.open jpgPath, 'r'
             token = $defaults[$token_key]
-            post_response = UpscrnClient.perform('post', 'screenshots', {:image => @image, :auth_token => token})
+            puts "about to grab; token= #{token}"
+            upload_to_project = false
+            if upload_to_project
+
+                 post_response = UpscrnClient.perform("post", "projects/#{project}/screenshots", token,  {:screenshot => {:image => @image}})
+            else
+                post_response = UpscrnClient.perform('post', 'screenshots', token, {:screenshot => {:image => file}})
+                
+                #post_response = UpscrnClient.perform('post', 'screenshots', {:image => @image, :auth_token => token})
+            end
             puts "response: #{post_response}"
             @url = post_response["url"]
             nsurl = NSURL.URLWithString("http://#{@url}")
+            
+            add_text_to_clipboard(nsurl)
+            
             #clickable_link = NSAttributedString.hyperlinkFromString("See on upscrn", withURL:nsurl)
             puts "url = #{@url}"
             @url_label.stringValue = nsurl
@@ -102,5 +114,11 @@ class HomeController < NSWindowController
             
             #[outputView setImage:nil];
         end
+    end
+    
+    def add_text_to_clipboard(text)
+        pasteboard = NSPasteboard.generalPasteboard
+        changeCount = pasteboard.clearContents
+        ok = pasteboard.writeObjects([text])
     end
 end
