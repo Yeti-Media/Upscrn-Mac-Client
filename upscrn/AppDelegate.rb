@@ -15,6 +15,7 @@ $defaults = NSUserDefaults.standardUserDefaults
 class AppDelegate
     attr_accessor :window
     attr_accessor :preferences_window
+    attr_accessor :url_label
     
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application

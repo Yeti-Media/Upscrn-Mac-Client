@@ -37,8 +37,17 @@ class HomeController < NSWindowController
         nsurl = NSURL.URLWithString("http://cnn.com")   
         show_screenshot_url("http://cnn.com", nsurl)
     end
+    def show_status(text)
+        @url_label.stringValue = text
+    end
     
     def grabScreenshot(sender)
+        queue = Dispatch::Queue.new('com.yeti.upsrcrn.gcd')
+        queue.async do
+            show_status("Capturing image...")
+        end
+        queue.async do
+        #@url_label.textDidChange(NSNotification.notificationWithName("dummy", sender ))
         puts "defaults token: #{$defaults.stringForKey($token_key)}"
         # This just invokes the API as you would if you wanted to grab a screen shot. The equivalent using the UI would be to
         # enable all windows, turn off "Fit Image Tightly", and then select all windows in the list.
@@ -60,11 +69,14 @@ class HomeController < NSWindowController
         screenShot = CGWindowListCreateImage(CGRectInfinite, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
         #Profile(screenShot);
         #StopwatchEnd("Screenshot");
-        uploadImage(screenShot);
+         uploadImage(screenShot);
         CGImageRelease(screenShot);
+        end
     end
     
     def uploadImage(cgImage)
+        status_message = "Uploading image..."
+        @url_label.stringValue = status_message
         if cgImage != nil
             
             # Create a bitmap rep from the image...
@@ -96,26 +108,31 @@ class HomeController < NSWindowController
             token = $defaults[$token_key]
             puts "about to grab; token= #{token}"
             upload_to_project = false
-            if upload_to_project
+            begin
+                if upload_to_project
 
-                 post_response = UpscrnClient.perform("post", "projects/#{project}/screenshots", token,  {:screenshot => {:image => @image}})
-            else
-                post_response = UpscrnClient.perform('post', 'screenshots', token, {:screenshot => {:image => file}})
+                     post_response = UpscrnClient.perform("post", "projects/#{project}/screenshots", token,  {:screenshot => {:image => @image}})
+                else
+                    post_response = UpscrnClient.perform('post', 'screenshots', token, {:screenshot => {:image => file}})
+                    
+                    #post_response = UpscrnClient.perform('post', 'screenshots', {:image => @image, :auth_token => token})
+                end
+
+                puts "response: #{post_response}"
+                @url = post_response["url"]
+                nsurl = NSURL.URLWithString("http://#{@url}")
                 
-                #post_response = UpscrnClient.perform('post', 'screenshots', {:image => @image, :auth_token => token})
+                add_text_to_clipboard(nsurl)
+                
+                #clickable_link = NSAttributedString.hyperlinkFromString("See on upscrn", withURL:nsurl)
+                puts "url = #{@url}"
+                #@url_label.stringValue = nsurl
+                show_screenshot_url(@url, nsurl)
+            rescue Exception => e
+                @url_label.stringValue = e.message
             end
-            puts "response: #{post_response}"
-            @url = post_response["url"]
-            nsurl = NSURL.URLWithString("http://#{@url}")
             
-            add_text_to_clipboard(nsurl)
-            
-            #clickable_link = NSAttributedString.hyperlinkFromString("See on upscrn", withURL:nsurl)
-            puts "url = #{@url}"
-            #@url_label.stringValue = nsurl
-            show_screenshot_url(@url, nsurl)
-            
-            else
+        else
             
             #[outputView setImage:nil];
         end
