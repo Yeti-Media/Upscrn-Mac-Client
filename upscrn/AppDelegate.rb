@@ -16,16 +16,137 @@ class AppDelegate
     attr_accessor :window
     attr_accessor :preferences_window
     attr_accessor :url_label
+    attr_accessor :status_bar_menu
+    attr_accessor :response_window
     
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application
+        activateStatusBar
+        $app_start_time = Time.now
         if ($defaults[$token_key].nil?  || $defaults[$token_key].length == 0)
             preferences_window.makeKeyAndOrderFront(NSApp)
         end
+        puts "getting query"
+        @query = NSMetadataQuery.alloc.init
+        
+        
+        NSNotificationCenter.defaultCenter.addObserver(self, selector: :"queryUpdated:", name:NSMetadataQueryDidStartGatheringNotification, object:@query)
+        
+        NSNotificationCenter.defaultCenter.addObserver(self,selector: :"queryUpdated:", name:NSMetadataQueryDidUpdateNotification, object:@query)
+        
+        NSNotificationCenter.defaultCenter.addObserver(self,selector: :"queryUpdated:", name:NSMetadataQueryDidFinishGatheringNotification, object:@query)
+        @query.setDelegate(self)
+        @query.setPredicate(NSPredicate.predicateWithFormat("kMDItemIsScreenCapture = 1"))
+        @query.startQuery
+        puts "got query"
+        @url_label.setStringValue("waiting for a screenshot...")
+
+    end
+    
+    def applicationWillTerminate(a_notification)
+        @query.stopQuery
+        @query.setDelegate(nil)
+        @query.release
+        @query = nil
+        self.setQueryResults(nil)
     end
 
+    def queryUpdated(note)
+        puts "query updated!"
+        @result = Hash.new
+        if @query.results.any?
+            puts "filename: #{@query.results.last.valueForAttribute("kMDItemFSName")}"
+            created_time = time_from_creation_date(@query.results.last.valueForAttribute("kMDItemContentCreationDate"))
+            if created_time > $app_start_time
+                queue = Dispatch::Queue.new('com.yeti.upsrcrn.gcd')
+                queue.async do
+                    @url_label.setStringValue("uploading...")
+                    window.makeKeyAndOrderFront(self)
+                end
+              queue.async do  
+                #dump_query_atttributes
+              @result = UpscrnClient.upload_screenshot(@query.results.last.valueForAttribute("kMDItemFSName"))
+                puts "result: #{@result}"
+            if @result['success']
+              @url_label.setStringValue("success!")
+              url = @result['url']
+              nsurl = NSURL.URLWithString("http://#{url}")
+                
+              add_text_to_clipboard(nsurl)
+              show_screenshot_url(url, nsurl)
+            else
+                puts "setting error label"
+                @url_label.setStringValue(@result['error'])
+            end
+              window.makeKeyAndOrderFront(self)
+            end
+            end
+        end
+        #self.setQueryResults(@query.results)
+    end
 
+    def time_from_creation_date(cdate)
+      if cdate.to_s.match(/(\d\d\d\d)-(\d\d)-(\d\d)\s(\d\d):(\d\d):(\d\d)/)
+        Time.local($1,$2,$3,$4,$5,$6)
+      else
+        $app_start_time
+      end
+    end
+     
+    def dump_query_attributes
+         @query.results.last.attributes.each do |key|
+            value = @query.results.last.valueForAttribute("#{key}")
+            puts "key: #{key}  value: #{value}"
+        end
+    end
+                                                                                        
+    def add_text_to_clipboard(text)
+        pasteboard = NSPasteboard.generalPasteboard
+        changeCount = pasteboard.clearContents
+        ok = pasteboard.writeObjects([text])
+    end
     
+    def activateStatusBar
+        bar = NSStatusBar.systemStatusBar
+        
+        theItem = bar.statusItemWithLength(NSVariableStatusItemLength)
+        
+        theItem.setTitle("upscrn")
+        theItem.setHighlightMode(true)
+        theItem.setMenu(status_bar_menu)
+    end
+    
+    def show_screenshot_url(link_text, nsurl)
+        # both are needed, otherwise hyperlink won't accept mousedown
+        @url_label.setAllowsEditingTextAttributes(true)
+        @url_label.setSelectable(true)
+        
+        url_string = NSMutableAttributedString.alloc.init
+        url_string.appendAttributedString(hyperlink_from_string(link_text, nsurl))
+        
+        # set the attributed string to the NSTextField
+        @url_label.setAttributedStringValue(url_string)
+    end
+
+    #from http://developer.apple.com/library/mac/#qa/qa1487/_index.html
+    def hyperlink_from_string(text, url)
+        attrString = NSMutableAttributedString.alloc.initWithString(text)
+        
+        range = NSMakeRange(0, attrString.length)
+        
+        attrString.beginEditing
+        attrString.addAttribute(NSLinkAttributeName, value:url.absoluteString, range:range)
+        
+        # make the text appear in blue
+        attrString.addAttribute(NSForegroundColorAttributeName, value:NSColor.blueColor, range:range)
+        
+        # next make the text appear with an underline
+        attrString.addAttribute(NSUnderlineStyleAttributeName, value:NSNumber.numberWithInt(NSSingleUnderlineStyle), range:range)
+        
+        attrString.endEditing
+        attrString
+    end
+
     # Persistence accessors
     attr_reader :persistentStoreCoordinator
     attr_reader :managedObjectModel

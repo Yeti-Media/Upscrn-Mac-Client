@@ -19,6 +19,8 @@
 		C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FB140D057A0043652E /* upscrn_client.rb */; };
 		C97D11FE140D058F0043652E /* auth_token.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FD140D058F0043652E /* auth_token.rb */; };
 		C97D1200140D08CA0043652E /* json in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FF140D08CA0043652E /* json */; };
+		C9A342D91415A669001654DE /* menulet.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9A342D81415A669001654DE /* menulet.rb */; };
+		C9DC92DE140E604400E26E11 /* upscrn.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DC92DD140E604400E26E11 /* upscrn.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		C97D11FB140D057A0043652E /* upscrn_client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = upscrn_client.rb; sourceTree = "<group>"; };
 		C97D11FD140D058F0043652E /* auth_token.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = auth_token.rb; sourceTree = "<group>"; };
 		C97D11FF140D08CA0043652E /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
+		C9A342D81415A669001654DE /* menulet.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = menulet.rb; sourceTree = "<group>"; };
+		C9DC92DD140E604400E26E11 /* upscrn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = upscrn.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		C97D11E5140D04BF0043652E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9DC92DD140E604400E26E11 /* upscrn.icns */,
 				C97D11E6140D04BF0043652E /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -117,6 +122,7 @@
 				C97D11F9140D05560043652E /* home_controller.rb */,
 				C97D11FB140D057A0043652E /* upscrn_client.rb */,
 				C97D11FD140D058F0043652E /* auth_token.rb */,
+				C9A342D81415A669001654DE /* menulet.rb */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -197,6 +203,8 @@
 				C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */,
 				C97D11FE140D058F0043652E /* auth_token.rb in Resources */,
 				C97D1200140D08CA0043652E /* json in Resources */,
+				C9DC92DE140E604400E26E11 /* upscrn.icns in Resources */,
+				C9A342D91415A669001654DE /* menulet.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +352,7 @@
 				C97D11F5140D04BF0043652E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C97D11F6140D04BF0043652E /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
 			isa = XCConfigurationList;
@@ -352,6 +361,7 @@
 				C97D11F8140D04BF0043652E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
