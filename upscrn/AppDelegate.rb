@@ -5,9 +5,6 @@
 #  Created by Matthew Cowley on 8/30/11.
 #  Copyright 2011 __MyCompanyName__. All rights reserved.
 #
-require 'rubygems'
-require 'rest-client'
-
 $token_key = "upscrn_token"
 $defaults = NSUserDefaults.standardUserDefaults
 
@@ -18,6 +15,7 @@ class AppDelegate
     attr_accessor :url_label
     attr_accessor :status_bar_menu
     attr_accessor :response_window
+    attr_accessor :project_list
     
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application
@@ -29,6 +27,7 @@ class AppDelegate
         puts "getting query"
         @query = NSMetadataQuery.alloc.init
         
+        #get_projects
         
         NSNotificationCenter.defaultCenter.addObserver(self, selector: :"queryUpdated:", name:NSMetadataQueryDidStartGatheringNotification, object:@query)
         
@@ -39,8 +38,21 @@ class AppDelegate
         @query.setPredicate(NSPredicate.predicateWithFormat("kMDItemIsScreenCapture = 1"))
         @query.startQuery
         puts "got query"
+        
+        populate_project_list
+        
         @url_label.setStringValue("waiting for a screenshot...")
 
+    end
+    
+    def populate_project_list
+      projects = UpscrnClient.projects
+        puts "\n\nprojects: #{projects}"
+      projects["projects"].each do |p|
+          puts "\n\np: #{p}"
+          @project_list.addItemWithObjectValue(p["name"])
+      end
+      @project_list.addItemsWithObjectValues( UpscrnClient.projects)
     end
     
     def applicationWillTerminate(a_notification)
@@ -128,6 +140,11 @@ class AppDelegate
         @url_label.setAttributedStringValue(url_string)
     end
 
+    def get_projects
+        projects = UpscrnClient::Client.projects($defaults[$token_key])
+        puts "*** projects: #{projects.inspect}"
+    end
+    
     #from http://developer.apple.com/library/mac/#qa/qa1487/_index.html
     def hyperlink_from_string(text, url)
         attrString = NSMutableAttributedString.alloc.initWithString(text)

@@ -8,13 +8,19 @@
 
 
 #$LOAD_PATH << 'lib/ruby/json/lib'
+require 'json'
 require 'rubygems'
-require 'json/lib/json.rb'
+#require 'json/lib/json.rb'
 require 'rest-client'
 
 class UpscrnClient
     class << self
-    
+        def projects
+          puts "getting projects.."
+          token = $defaults[$token_key]
+          projects = UpscrnClient.perform('get', 'projects', token)
+          projects
+        end
     
         def upload_screenshot(filename)
            filepath = NSHomeDirectory().stringByAppendingPathComponent("Desktop/#{filename}")
@@ -55,14 +61,14 @@ class UpscrnClient
             @result
         end
     
-        def perform(verb,action,auth_token, params={})
-            action = [action, 'json'].join('.')
-            url = ['http://upscrn.com', action].join('/')
-            #url = ['http://127.0.0.1:3000', action].join('/')
-            url = url + "?auth_token=#{auth_token}"
-            puts "url: #{url} params: #{params}"
-            JSON.parse(RestClient.send(verb,url,params).body)
-        end
+    def perform(verb,action,auth_token, params={})
+        action = [action, 'json'].join('.')
+        url = ['http://upscrn.com', action].join('/')
+        #      url = ['http://127.0.0.1:3000', action].join('/')
+        url = url + "?auth_token=#{auth_token}"
+        p url
+        JSON.parse(RestClient.send(verb,url,params).body)
+    end
     end
 end
 

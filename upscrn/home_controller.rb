@@ -16,7 +16,7 @@
 #
 
 require 'auth_token'
-require 'upscrn_client'
+#require 'upscrn_client'
 
 class HomeController < NSWindowController
     attr_accessor :url_label
