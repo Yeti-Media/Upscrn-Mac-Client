@@ -10,12 +10,14 @@ $defaults = NSUserDefaults.standardUserDefaults
 
 
 class AppDelegate
-    attr_accessor :window
+    attr_accessor :status_window
     attr_accessor :preferences_window
     attr_accessor :url_label
     attr_accessor :status_bar_menu
     attr_accessor :response_window
     attr_accessor :project_list
+    attr_accessor :upload_window
+    @projects = []
     
     def applicationDidFinishLaunching(a_notification)
         # Insert code here to initialize your application
@@ -24,7 +26,7 @@ class AppDelegate
         if ($defaults[$token_key].nil?  || $defaults[$token_key].length == 0)
             preferences_window.makeKeyAndOrderFront(NSApp)
         end
-        puts "getting query"
+        Logger.debug "getting query"
         @query = NSMetadataQuery.alloc.init
         
         #get_projects
@@ -37,7 +39,7 @@ class AppDelegate
         @query.setDelegate(self)
         @query.setPredicate(NSPredicate.predicateWithFormat("kMDItemIsScreenCapture = 1"))
         @query.startQuery
-        puts "got query"
+        Logger.debug "got query"
         
         populate_project_list
         
@@ -46,10 +48,12 @@ class AppDelegate
     end
     
     def populate_project_list
+        @projects ||= []
       projects = UpscrnClient.projects
-        puts "\n\nprojects: #{projects}"
+        Logger.debug "\n\nprojects: #{projects}"
       projects["projects"].each do |p|
-          puts "\n\np: #{p}"
+          @projects << p["id"]
+          Logger.debug "\n\np: #{p}"
           @project_list.addItemWithObjectValue(p["name"])
       end
       @project_list.addItemsWithObjectValues( UpscrnClient.projects)
@@ -64,38 +68,59 @@ class AppDelegate
     end
 
     def queryUpdated(note)
-        puts "query updated!"
+        Logger.debug "query updated!"
         @result = Hash.new
         if @query.results.any?
-            puts "filename: #{@query.results.last.valueForAttribute("kMDItemFSName")}"
+            Logger.debug "filename: #{@query.results.last.valueForAttribute("kMDItemFSName")}"
             created_time = time_from_creation_date(@query.results.last.valueForAttribute("kMDItemContentCreationDate"))
             if created_time > $app_start_time
-                queue = Dispatch::Queue.new('com.yeti.upsrcrn.gcd')
-                queue.async do
-                    @url_label.setStringValue("uploading...")
-                    window.makeKeyAndOrderFront(self)
-                end
-              queue.async do  
-                #dump_query_atttributes
-              @result = UpscrnClient.upload_screenshot(@query.results.last.valueForAttribute("kMDItemFSName"))
-                puts "result: #{@result}"
-            if @result['success']
-              @url_label.setStringValue("success!")
-              url = @result['url']
-              nsurl = NSURL.URLWithString("http://#{url}")
-                
-              add_text_to_clipboard(nsurl)
-              show_screenshot_url(url, nsurl)
-            else
-                puts "setting error label"
-                @url_label.setStringValue(@result['error'])
-            end
-              window.makeKeyAndOrderFront(self)
-            end
+                Logger.debug "showing window"
+              upload_window.makeKeyAndOrderFront(self)
             end
         end
         #self.setQueryResults(@query.results)
     end
+    
+    def refrestProjectList(sender)
+        @projects = []
+        project_list.removeAllItems
+        populate_project_list
+    end
+    
+    def doUpload(sender)
+        project_name = project_list.objectValueOfSelectedItem
+        project_id = project_list.indexOfSelectedItem == -1 ? nil : @projects[project_list.indexOfSelectedItem]
+        Logger.debug "upload - project=#{project_name}"
+        Logger.debug "index: #{project_list.indexOfSelectedItem}"
+        queue = Dispatch::Queue.new('com.yeti.upsrcrn.gcd')
+        queue.async do
+            Logger.debug "setting status..."
+            @url_label.setStringValue("uploading...")
+            status_window.makeKeyAndOrderFront(self)
+            upload_window.orderOut(self)
+        end
+        queue.async do
+            
+            #dump_query_atttributes
+            @result = UpscrnClient.upload_screenshot(@query.results.last.valueForAttribute("kMDItemFSName"), project_id)
+            Logger.debug "result: #{@result}"
+            if @result['success']
+                @url_label.setStringValue("success!")
+                url = @result['url']
+                nsurl = NSURL.URLWithString("http://#{url}")
+                
+                add_text_to_clipboard(nsurl)
+                show_screenshot_url(url, nsurl)
+                else
+                Logger.debug "setting error label"
+                @url_label.setStringValue(@result['error'])
+            end
+            status_window.makeKeyAndOrderFront(self)
+        end
+        
+    end
+    
+    
 
     def time_from_creation_date(cdate)
       if cdate.to_s.match(/(\d\d\d\d)-(\d\d)-(\d\d)\s(\d\d):(\d\d):(\d\d)/)
@@ -108,7 +133,7 @@ class AppDelegate
     def dump_query_attributes
          @query.results.last.attributes.each do |key|
             value = @query.results.last.valueForAttribute("#{key}")
-            puts "key: #{key}  value: #{value}"
+            Logger.debug "key: #{key}  value: #{value}"
         end
     end
                                                                                         
@@ -142,7 +167,7 @@ class AppDelegate
 
     def get_projects
         projects = UpscrnClient::Client.projects($defaults[$token_key])
-        puts "*** projects: #{projects.inspect}"
+        Logger.debug "*** projects: #{projects.inspect}"
     end
     
     #from http://developer.apple.com/library/mac/#qa/qa1487/_index.html
@@ -198,7 +223,7 @@ class AppDelegate
 
         mom = self.managedObjectModel
         unless mom
-            puts "#{self.class} No model to generate a store from"
+            Logger.debug "#{self.class} No model to generate a store from"
             return nil
         end
 
@@ -275,7 +300,7 @@ class AppDelegate
         error = Pointer.new_with_type('@')
 
         unless self.managedObjectContext.commitEditing
-          puts "#{self.class} unable to commit editing before saving"
+          Logger.debug "#{self.class} unable to commit editing before saving"
         end
 
         unless self.managedObjectContext.save(error)
@@ -289,7 +314,7 @@ class AppDelegate
         return NSTerminateNow unless @managedObjectContext
 
         unless self.managedObjectContext.commitEditing
-            puts "%@ unable to commit editing to terminate" % self.class
+            Loggder.debug "%@ unable to commit editing to terminate" % self.class
         end
 
         unless self.managedObjectContext.hasChanges

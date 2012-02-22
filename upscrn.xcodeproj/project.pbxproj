@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C92347D1144214C3000983DD /* json in Resources */ = {isa = PBXBuildFile; fileRef = C92347D0144214C3000983DD /* json */; };
+		C92347D4144214CD000983DD /* upscrn_client.rb in Resources */ = {isa = PBXBuildFile; fileRef = C92347D3144214CD000983DD /* upscrn_client.rb */; };
+		C965BE42144DD24D00A9A41A /* logger.rb in Resources */ = {isa = PBXBuildFile; fileRef = C965BE41144DD24D00A9A41A /* logger.rb */; };
 		C97D11D8140D04BE0043652E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97D11D7140D04BE0043652E /* Cocoa.framework */; };
 		C97D11DA140D04BE0043652E /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97D11D9140D04BE0043652E /* MacRuby.framework */; };
 		C97D11E1140D04BE0043652E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C97D11DF140D04BE0043652E /* InfoPlist.strings */; };
@@ -16,14 +19,15 @@
 		C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11EC140D04BF0043652E /* AppDelegate.rb */; };
 		C97D11F0140D04BF0043652E /* upscrn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C97D11EE140D04BF0043652E /* upscrn.xcdatamodeld */; };
 		C97D11FA140D05560043652E /* home_controller.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11F9140D05560043652E /* home_controller.rb */; };
-		C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FB140D057A0043652E /* upscrn_client.rb */; };
 		C97D11FE140D058F0043652E /* auth_token.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FD140D058F0043652E /* auth_token.rb */; };
-		C97D1200140D08CA0043652E /* json in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FF140D08CA0043652E /* json */; };
 		C9A342D91415A669001654DE /* menulet.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9A342D81415A669001654DE /* menulet.rb */; };
 		C9DC92DE140E604400E26E11 /* upscrn.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DC92DD140E604400E26E11 /* upscrn.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C92347D0144214C3000983DD /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
+		C92347D3144214CD000983DD /* upscrn_client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = upscrn_client.rb; sourceTree = "<group>"; };
+		C965BE41144DD24D00A9A41A /* logger.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = logger.rb; sourceTree = "<group>"; };
 		C97D11D3140D04BE0043652E /* upscrn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upscrn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97D11D7140D04BE0043652E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C97D11D9140D04BE0043652E /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = Library/Frameworks/MacRuby.framework; sourceTree = DEVELOPER_DIR; };
@@ -36,9 +40,7 @@
 		C97D11EC140D04BF0043652E /* AppDelegate.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = AppDelegate.rb; sourceTree = "<group>"; };
 		C97D11EF140D04BF0043652E /* upscrn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = upscrn.xcdatamodel; sourceTree = "<group>"; };
 		C97D11F9140D05560043652E /* home_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = home_controller.rb; sourceTree = "<group>"; };
-		C97D11FB140D057A0043652E /* upscrn_client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = upscrn_client.rb; sourceTree = "<group>"; };
 		C97D11FD140D058F0043652E /* auth_token.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = auth_token.rb; sourceTree = "<group>"; };
-		C97D11FF140D08CA0043652E /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
 		C9A342D81415A669001654DE /* menulet.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = menulet.rb; sourceTree = "<group>"; };
 		C9DC92DD140E604400E26E11 /* upscrn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = upscrn.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -117,12 +119,13 @@
 		C97D11E9140D04BF0043652E /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C97D11FF140D08CA0043652E /* json */,
+				C92347D3144214CD000983DD /* upscrn_client.rb */,
+				C92347D0144214C3000983DD /* json */,
 				C97D11EA140D04BF0043652E /* rb_main.rb */,
 				C97D11F9140D05560043652E /* home_controller.rb */,
-				C97D11FB140D057A0043652E /* upscrn_client.rb */,
 				C97D11FD140D058F0043652E /* auth_token.rb */,
 				C9A342D81415A669001654DE /* menulet.rb */,
+				C965BE41144DD24D00A9A41A /* logger.rb */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -200,11 +203,12 @@
 				C97D11EB140D04BF0043652E /* rb_main.rb in Resources */,
 				C97D11ED140D04BF0043652E /* AppDelegate.rb in Resources */,
 				C97D11FA140D05560043652E /* home_controller.rb in Resources */,
-				C97D11FC140D057A0043652E /* upscrn_client.rb in Resources */,
 				C97D11FE140D058F0043652E /* auth_token.rb in Resources */,
-				C97D1200140D08CA0043652E /* json in Resources */,
 				C9DC92DE140E604400E26E11 /* upscrn.icns in Resources */,
 				C9A342D91415A669001654DE /* menulet.rb in Resources */,
+				C92347D1144214C3000983DD /* json in Resources */,
+				C92347D4144214CD000983DD /* upscrn_client.rb in Resources */,
+				C965BE42144DD24D00A9A41A /* logger.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
