@@ -22,6 +22,8 @@
 		C97D11FE140D058F0043652E /* auth_token.rb in Resources */ = {isa = PBXBuildFile; fileRef = C97D11FD140D058F0043652E /* auth_token.rb */; };
 		C9A342D91415A669001654DE /* menulet.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9A342D81415A669001654DE /* menulet.rb */; };
 		C9DC92DE140E604400E26E11 /* upscrn.icns in Resources */ = {isa = PBXBuildFile; fileRef = C9DC92DD140E604400E26E11 /* upscrn.icns */; };
+		C9E8973514F5D0680085C0BD /* upscrn_macmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E8973414F5D0680085C0BD /* upscrn_macmenu.png */; };
+		C9E8973814F5D3990085C0BD /* menubar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E8973714F5D3990085C0BD /* menubar_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		C97D11FD140D058F0043652E /* auth_token.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = auth_token.rb; sourceTree = "<group>"; };
 		C9A342D81415A669001654DE /* menulet.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = menulet.rb; sourceTree = "<group>"; };
 		C9DC92DD140E604400E26E11 /* upscrn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = upscrn.icns; sourceTree = SOURCE_ROOT; };
+		C9E8973414F5D0680085C0BD /* upscrn_macmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upscrn_macmenu.png; sourceTree = "<group>"; };
+		C9E8973714F5D3990085C0BD /* menubar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubar_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 		C97D11E5140D04BF0043652E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8973414F5D0680085C0BD /* upscrn_macmenu.png */,
+				C9E8973714F5D3990085C0BD /* menubar_icon.png */,
 				C9DC92DD140E604400E26E11 /* upscrn.icns */,
 				C97D11E6140D04BF0043652E /* MainMenu.xib */,
 			);
@@ -209,6 +215,8 @@
 				C92347D1144214C3000983DD /* json in Resources */,
 				C92347D4144214CD000983DD /* upscrn_client.rb in Resources */,
 				C965BE42144DD24D00A9A41A /* logger.rb in Resources */,
+				C9E8973514F5D0680085C0BD /* upscrn_macmenu.png in Resources */,
+				C9E8973814F5D3990085C0BD /* menubar_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

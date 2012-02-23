@@ -147,8 +147,10 @@ class AppDelegate
         bar = NSStatusBar.systemStatusBar
         
         theItem = bar.statusItemWithLength(NSVariableStatusItemLength)
-        
-        theItem.setTitle("upscrn")
+        menuImage = NSImage.imageNamed("menubar_icon.png")
+        menuImage.setTemplate(true)
+        theItem.setImage(menuImage)
+        #theItem.setTitle("upscrn")
         theItem.setHighlightMode(true)
         theItem.setMenu(status_bar_menu)
     end
